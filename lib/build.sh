@@ -115,11 +115,11 @@ install_node() {
 
   # Download node from Heroku's S3 mirror of nodejs.org/dist
   info "Downloading and installing node $node_engine..."
-  node_url="http://s3pository.heroku.com/node/v$node_engine/node-v$node_engine-linux-x64.tar.gz"
+  node_url="http://nodejs.org/dist/v$node_engine/node-v$node_engine-linux-x86.tar.gz"
   curl $node_url -s -o - | tar xzf - -C /tmp
 
   # Move node (and npm) into .heroku/node and make them executable
-  mv /tmp/node-v$node_engine-linux-x64/* $heroku_dir/node
+  mv /tmp/node-v$node_engine-linux-x86/* $heroku_dir/node
   chmod +x $heroku_dir/node/bin/*
   PATH=$heroku_dir/node/bin:$PATH
 }
@@ -135,7 +135,7 @@ install_iojs() {
 
   # TODO: point at /dist once that's available
   info "Downloading and installing iojs $iojs_engine..."
-  download_url="https://iojs.org/dist/v$iojs_engine/iojs-v$iojs_engine-linux-x64.tar.gz"
+  download_url="https://iojs.org/dist/v$iojs_engine/iojs-v$iojs_engine-linux-x86.tar.gz"
   curl $download_url -s -o - | tar xzf - -C /tmp
 
   # Move iojs/node (and npm) binaries into .heroku/node and make them executable
